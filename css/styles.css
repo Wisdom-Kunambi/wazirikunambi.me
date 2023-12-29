@@ -566,6 +566,10 @@ progress {
   margin-right: 0.5rem;
 }
 
+.list-inline-item span {   /* that style is new added */
+  font-size: 16px;      
+}
+
 .initialism {
   font-size: 0.875em;
   text-transform: uppercase;
