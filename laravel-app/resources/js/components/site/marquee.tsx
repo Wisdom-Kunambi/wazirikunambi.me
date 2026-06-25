@@ -1,0 +1,197 @@
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect, useRef } from 'react';
+
+if (typeof window !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+}
+
+export function Marquee() {
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const trackTopRef = useRef<HTMLDivElement>(null);
+    const trackBottomRef = useRef<HTMLDivElement>(null);
+    const mobileRow1Ref = useRef<HTMLDivElement>(null);
+    const mobileRow2Ref = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (!sectionRef.current) return;
+
+        const ctx = gsap.context(() => {
+            const mm = gsap.matchMedia();
+
+            mm.add('(max-width: 767px)', () => {
+                const row1 = mobileRow1Ref.current;
+                const row2 = mobileRow2Ref.current;
+                const trigger = sectionRef.current;
+                if (row1 || row2) {
+                    const tl = gsap.timeline({
+                        scrollTrigger: {
+                            trigger,
+                            start: 'top bottom',
+                            end: 'bottom top',
+                            scrub: true,
+                            fastScrollEnd: true,
+                            invalidateOnRefresh: true,
+                        },
+                    });
+                    if (row1) tl.to(row1, { x: -120, ease: 'none' }, 0);
+                    if (row2) tl.to(row2, { x: 120, ease: 'none' }, 0);
+                }
+
+                gsap.from('.mobile-service-item', {
+                    opacity: 0,
+                    y: 20,
+                    stagger: 0.1,
+                    duration: 0.8,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: '.mobile-services-grid',
+                        start: 'top 85%',
+                    },
+                });
+
+                return () => {};
+            });
+
+            mm.add('(min-width: 768px)', () => {
+                const trackTop = trackTopRef.current;
+                const trackBottom = trackBottomRef.current;
+                if (!trackTop || !trackBottom) return () => {};
+
+                const calculateValues = (trackEl: HTMLDivElement) => {
+                    const viewport = window.innerWidth;
+                    const maxTravel = Math.max(trackEl.scrollWidth - viewport, 0);
+                    const offscreenRight = Math.min(viewport * 0.9, 900);
+                    const offscreenLeft = -Math.min(maxTravel + viewport * 0.2, maxTravel + 900);
+                    const endLeft = -Math.min(maxTravel, viewport * 0.95);
+                    const endRight = Math.min(viewport * 0.9, 900);
+                    return { offscreenRight, offscreenLeft, endLeft, endRight };
+                };
+
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: 'top bottom',
+                        end: 'bottom top',
+                        scrub: 0.16,
+                        fastScrollEnd: true,
+                        invalidateOnRefresh: true,
+                    },
+                });
+
+                tl.fromTo(
+                    trackTop,
+                    { x: () => calculateValues(trackTop).offscreenRight },
+                    { x: () => calculateValues(trackTop).endLeft, ease: 'none' },
+                    0,
+                );
+                tl.fromTo(
+                    trackBottom,
+                    { x: () => calculateValues(trackBottom).offscreenLeft },
+                    { x: () => calculateValues(trackBottom).endRight, ease: 'none' },
+                    0,
+                );
+
+                return () => {
+                    tl.scrollTrigger?.kill();
+                };
+            });
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, []);
+
+    return (
+        <section
+            ref={sectionRef}
+            className="relative overflow-hidden bg-background py-16 sm:py-20 md:py-24"
+        >
+            {/* DESKTOP */}
+            <div className="hidden md:flex items-center overflow-hidden">
+                <div className="absolute inset-y-0 left-0 w-32 bg-linear-to-r from-background to-transparent z-10 pointer-events-none" />
+                <div className="absolute inset-y-0 right-0 w-32 bg-linear-to-l from-background to-transparent z-10 pointer-events-none" />
+
+                <div className="w-full flex flex-col justify-center gap-12 lg:gap-14">
+                    <div ref={trackTopRef} className="flex items-center whitespace-nowrap will-change-transform">
+                        <span className="text-[clamp(6rem,12vw,14rem)] font-black text-foreground leading-[0.9] tracking-tighter select-none">
+                            Web Dev
+                        </span>
+                        <span className="text-[clamp(3rem,5vw,5rem)] text-foreground/20 mx-14 select-none font-light italic">
+                            &amp;
+                        </span>
+                        <span className="text-[clamp(6rem,12vw,14rem)] font-black text-foreground leading-[0.9] tracking-tighter select-none">
+                            App Dev
+                        </span>
+                        <div className="ml-24 pr-32 flex flex-col gap-2">
+                            <span className="text-base text-foreground/45 font-mono uppercase tracking-[0.2em]">Services</span>
+                            <div className="h-px w-8 bg-foreground/20 mb-2" />
+                            <span className="text-xl text-foreground/70 font-bold uppercase tracking-tight">Frontend Development</span>
+                            <span className="text-xl text-foreground/70 font-bold uppercase tracking-tight">Backend Systems</span>
+                            <span className="text-xl text-foreground/70 font-bold uppercase tracking-tight">Responsive Design</span>
+                            <span className="text-xl text-foreground/70 font-bold uppercase tracking-tight">API Integration</span>
+                        </div>
+                    </div>
+
+                    <div ref={trackBottomRef} className="flex items-center whitespace-nowrap will-change-transform">
+                        <span className="text-[clamp(6rem,12vw,14rem)] font-black text-foreground leading-[0.9] tracking-tighter select-none">
+                            UI
+                        </span>
+                        <span className="text-[clamp(3rem,5vw,5rem)] text-foreground/20 mx-14 select-none font-light italic">
+                            &amp;
+                        </span>
+                        <span className="text-[clamp(6rem,12vw,14rem)] font-black text-foreground leading-[0.9] tracking-tighter select-none">
+                            Systems
+                        </span>
+                        <div className="ml-24 pr-32 flex flex-col gap-2 text-right">
+                            <span className="text-base text-foreground/45 font-mono uppercase tracking-[0.2em]">Focus</span>
+                            <div className="ml-auto h-px w-8 bg-foreground/20 mb-2" />
+                            <span className="text-xl text-foreground/70 font-bold uppercase tracking-tight">Performance</span>
+                            <span className="text-xl text-foreground/70 font-bold uppercase tracking-tight">Accessibility</span>
+                            <span className="text-xl text-foreground/70 font-bold uppercase tracking-tight">Clean UI</span>
+                            <span className="text-xl text-foreground/70 font-bold uppercase tracking-tight">Great UX</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* MOBILE */}
+            <div className="md:hidden px-6 flex flex-col gap-12">
+                <div className="space-y-2">
+                    <div ref={mobileRow1Ref} className="whitespace-nowrap translate-x-12">
+                        <span className="text-7xl font-black text-foreground uppercase leading-none tracking-tighter">
+                            Web Dev
+                        </span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                        <div className="h-px flex-1 bg-border" />
+                        <span className="text-3xl font-light italic text-foreground/30">&amp;</span>
+                        <div className="h-px flex-1 bg-border" />
+                    </div>
+                    <div ref={mobileRow2Ref} className="whitespace-nowrap -translate-x-12 flex justify-end">
+                        <span className="text-7xl font-black text-foreground uppercase leading-none tracking-tighter">
+                            App Dev
+                        </span>
+                    </div>
+                </div>
+
+                <div className="mobile-services-grid grid grid-cols-1 gap-4 pt-8">
+                    <span className="text-[10px] text-foreground/45 font-mono uppercase tracking-[0.3em] mb-2">Expertise</span>
+                    {[
+                        'Frontend Development',
+                        'Backend Systems',
+                        'Responsive Design',
+                        'API Integration',
+                        'Database Architecture',
+                    ].map((service, i) => (
+                        <div key={i} className="mobile-service-item flex items-center gap-3">
+                            <div className="w-1.5 h-1.5 rounded-full bg-foreground/25" />
+                            <span className="text-lg text-foreground/60 font-medium tracking-tight whitespace-nowrap overflow-hidden text-ellipsis">
+                                {service}
+                            </span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
