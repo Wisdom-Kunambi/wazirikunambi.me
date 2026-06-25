@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" role="img" aria-label="Property real estate web app cover">
+  <rect width="1200" height="800" fill="#18181b"/>
+  <g stroke="#3f3f46" stroke-width="1">
+    <path d="M0 200H1200M0 400H1200M0 600H1200"/>
+    <path d="M300 0V800M600 0V800M900 0V800"/>
+  </g>
+  <g stroke="#fafafa" stroke-width="3" fill="none" opacity="0.85">
+    <path d="M475 380L600 278L725 380" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="515" y="380" width="170" height="100"/>
+    <rect x="578" y="418" width="44" height="62"/>
+  </g>
+  <text x="60" y="730" font-family="'Space Grotesk', sans-serif" font-weight="900" font-size="64" fill="#fafafa" letter-spacing="-2">PROPERTY</text>
+  <text x="60" y="80" font-family="'JetBrains Mono', monospace" font-size="20" fill="#a1a1aa" letter-spacing="6">REAL ESTATE APP</text>
+</svg>

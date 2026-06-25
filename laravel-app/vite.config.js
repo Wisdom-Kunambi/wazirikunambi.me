@@ -5,7 +5,10 @@ import {
 } from 'vite';
 import tailwindcss from "@tailwindcss/vite";
 
+const isGhPages = process.env.VITE_GH_PAGES === '1';
+
 export default defineConfig({
+    base: isGhPages ? '/wazirikunambi.me/' : '/',
     plugins: [
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.tsx'],
