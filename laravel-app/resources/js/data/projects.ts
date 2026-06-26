@@ -1,3 +1,7 @@
+import { SITE_BASE } from '@/lib/utils';
+
+const img = (n: string) => `${SITE_BASE}assets/img/projects/${n}`;
+
 export interface Project {
     slug: string;
     title: string;
@@ -17,7 +21,7 @@ export const projects: Project[] = [
         description:
             "An EdTech platform using 2D/3D, AI, AR & VR visualizations to bring science concepts to life — helping bridge the gap between classroom theory and hands-on STEM learning.",
         tags: ['React', 'JavaScript', 'AI Integration', 'AR/VR'],
-        image: '/assets/img/projects/smartdarasa.svg',
+        image: img('smartdarasa.svg'),
         url: 'https://learn.smartdarasa.com/',
         year: '2024',
         featured: true,
@@ -28,7 +32,7 @@ export const projects: Project[] = [
         description:
             "Corporate web application for Smart Africa Group, presenting the company's portfolio of brands, services, and group-wide initiatives in a clean, modern interface.",
         tags: ['React', 'Next.js', 'Tailwind CSS'],
-        image: '/assets/img/projects/smart-africa-group.svg',
+        image: img('smart-africa-group.svg'),
         url: 'https://www.smartafrica.group/',
         year: '2025',
         featured: true,
@@ -39,7 +43,7 @@ export const projects: Project[] = [
         description:
             'Retail outlet platform for Hill Group, delivering a responsive storefront experience for browsing products and services.',
         tags: ['React', 'JavaScript', 'Tailwind CSS'],
-        image: '/assets/img/projects/hill-group.svg',
+        image: img('hill-group.svg'),
         url: 'https://outlet.hillgroup.co.tz/',
         year: '2025',
     },
@@ -49,7 +53,7 @@ export const projects: Project[] = [
         description:
             'Creative studio website for NineColors, presenting branding, design, and digital services with a bold visual identity.',
         tags: ['React', 'JavaScript', 'UI/UX'],
-        image: '/assets/img/projects/ninecolors.svg',
+        image: img('ninecolors.svg'),
         url: 'https://ninecolors.co.tz/',
         year: '2025',
     },
@@ -59,7 +63,7 @@ export const projects: Project[] = [
         description:
             'A digital raffle and giveaway management tool that lets organizations run, track, and draw winners for promotional campaigns online.',
         tags: ['React', 'JavaScript', 'API Integration'],
-        image: '/assets/img/projects/smart-raffle.svg',
+        image: img('smart-raffle.svg'),
         url: 'https://smartraffletool.smartnology.co.tz/',
         year: '2025',
     },
@@ -69,7 +73,7 @@ export const projects: Project[] = [
         description:
             'Creative production studio website highlighting media, design, and content services with an interactive, media-rich layout.',
         tags: ['React', 'JavaScript', 'Tailwind CSS'],
-        image: '/assets/img/projects/smart-studio.svg',
+        image: img('smart-studio.svg'),
         url: 'https://smartstudio.co.tz/',
         year: '2025',
     },
@@ -79,7 +83,7 @@ export const projects: Project[] = [
         description:
             "Web platform for SmartLab, presenting the company's research, innovation, and technology lab services to clients and partners.",
         tags: ['React', 'JavaScript', 'REST APIs'],
-        image: '/assets/img/projects/smart-lab.svg',
+        image: img('smart-lab.svg'),
         url: 'https://www.smartlab.co.tz/',
         year: '2024',
     },
@@ -89,7 +93,7 @@ export const projects: Project[] = [
         description:
             "Corporate website for SmartNology, showcasing the company's software products, services, and technology solutions.",
         tags: ['React', 'Next.js', 'Tailwind CSS'],
-        image: '/assets/img/projects/smartnology.svg',
+        image: img('smartnology.svg'),
         url: 'https://smartnology.co.tz/',
         year: '2024',
     },
@@ -99,7 +103,7 @@ export const projects: Project[] = [
         description:
             'A personal portfolio website built for Ally Kashmiry to showcase professional work, services, and contact information.',
         tags: ['React', 'JavaScript', 'UI/UX'],
-        image: '/assets/img/projects/ally-kashmiry.svg',
+        image: img('ally-kashmiry.svg'),
         url: 'https://allykashmiry.com/',
         year: '2026',
     },
@@ -109,7 +113,7 @@ export const projects: Project[] = [
         description:
             'Event website for East Africa PR Week, providing schedules, speaker profiles, and registration for the regional PR industry conference.',
         tags: ['React', 'JavaScript', 'Tailwind CSS'],
-        image: '/assets/img/projects/pr-week.svg',
+        image: img('pr-week.svg'),
         url: 'https://prweek.prst.or.tz/',
         year: '2025',
     },
@@ -119,7 +123,7 @@ export const projects: Project[] = [
         description:
             'Event platform for the Tanzania Digital Market Summit, featuring agenda details, speaker profiles, and attendee registration.',
         tags: ['React', 'JavaScript', 'REST APIs'],
-        image: '/assets/img/projects/tdms.svg',
+        image: img('tdms.svg'),
         url: 'https://www.tdms.co.tz/',
         year: '2025',
     },
@@ -129,7 +133,7 @@ export const projects: Project[] = [
         description:
             "Corporate website for Zaba Company, presenting the brand's services and offerings with a clean, professional layout.",
         tags: ['React', 'JavaScript', 'Tailwind CSS'],
-        image: '/assets/img/projects/zaba.svg',
+        image: img('zaba.svg'),
         url: 'https://www.zaba.co.tz/',
         year: '2024',
     },
@@ -139,7 +143,7 @@ export const projects: Project[] = [
         description:
             'A responsive real estate web application for finding residential and rental properties, built with React.js.',
         tags: ['React', 'JavaScript', 'REST APIs'],
-        image: '/assets/img/projects/property.svg',
+        image: img('property.svg'),
         url: 'https://property-6wn.pages.dev/',
         year: '2023',
         featured: true,
@@ -150,7 +154,7 @@ export const projects: Project[] = [
         description:
             'A modern, monochrome personal portfolio with light/dark theming, scroll-based reveal animations, and a fully responsive layout — built with Tailwind CSS and vanilla JavaScript.',
         tags: ['HTML5', 'Tailwind CSS', 'JavaScript'],
-        image: '/assets/img/projects/portfolio.svg',
+        image: img('portfolio.svg'),
         url: 'https://wisdom-kunambi.github.io/wazirikunambi.me/',
         year: '2026',
         secondaryUrl: { label: 'View source', href: 'https://github.com/Wisdom-Kunambi/wazirikunambi.me' },

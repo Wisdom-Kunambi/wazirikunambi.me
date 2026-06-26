@@ -25,6 +25,7 @@ import {
 } from '@/components/site/hero-interactive';
 import { ProjectsScrollSection } from '@/components/site/projects-scroll-section';
 import { aboutParagraphs, socialLinks, techGroups } from '@/data/site';
+import { SITE_BASE } from '@/lib/utils';
 import SiteLayout from '@/layouts/site-layout';
 import type { SharedData } from '@/types';
 
@@ -99,7 +100,7 @@ export default function Home() {
                             </div>
                             <HeroInteractivePortrait frameClassName="w-full aspect-video">
                                 <img
-                                    src="/assets/img/waziriImage.png"
+                                    src={`${SITE_BASE}assets/img/waziriImage.png`}
                                     alt="Portrait of Waziri Kunambi"
                                     className="h-full w-full object-cover grayscale transition-[filter,transform] duration-500 group-hover:grayscale-0"
                                 />
@@ -234,7 +235,7 @@ export default function Home() {
                                     <div className="w-full max-w-[720px]">
                                         <HeroInteractivePortrait frameClassName="w-full aspect-[16/6]">
                                             <img
-                                                src="/assets/img/waziriImage.png"
+                                                src={`${SITE_BASE}assets/img/waziriImage.png`}
                                                 alt="Portrait of Waziri Kunambi"
                                                 className="h-full w-full object-cover grayscale transition-[filter,transform] duration-500 group-hover:grayscale-0"
                                             />

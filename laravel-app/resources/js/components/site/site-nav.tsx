@@ -4,6 +4,9 @@ import { Moon, Star, Sun } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { navLinks, socialLinks, type NavLink as NavLinkType } from '@/data/site';
+import { SITE_BASE } from '@/lib/utils';
+
+const siteHref = (path: string) => SITE_BASE.slice(0, -1) + path;
 
 const NAV_SOLID_BG_SCROLL_PX = 24;
 
@@ -157,7 +160,7 @@ export function SiteNav({ onMenuOpen, menuOpen }: SiteNavProps) {
                 {/* Desktop CTA — LET'S WORK */}
                 <div className="hidden md:flex">
                     <a
-                        href="/#contact"
+                        href={siteHref('/#contact')}
                         className={`text-xs font-mono uppercase tracking-[0.24em] transition-colors hover:text-foreground ${topTextClass}`}
                     >
                         Let&apos;s Work
@@ -239,7 +242,7 @@ export function SiteNav({ onMenuOpen, menuOpen }: SiteNavProps) {
 
                     {navLinks.map((link, i) => (
                         link.href.includes('#') ? (
-                            <a key={link.href} href={link.href} onClick={() => onMenuOpen()}
+                            <a key={link.href} href={siteHref(link.href)} onClick={() => onMenuOpen()}
                                 className={`group relative block py-4 transition-all duration-500 ${menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
                                 style={{ transitionDelay: menuOpen ? `${150 + i * 75}ms` : '0ms' }}>
                                 <span className="font-display text-4xl font-black uppercase tracking-wider text-foreground/40 transition-colors duration-300 group-hover:text-foreground sm:text-5xl md:text-6xl">
@@ -247,7 +250,7 @@ export function SiteNav({ onMenuOpen, menuOpen }: SiteNavProps) {
                                 </span>
                             </a>
                         ) : (
-                            <Link key={link.href} href={link.href} onClick={() => onMenuOpen()}
+                            <Link key={link.href} href={siteHref(link.href)} onClick={() => onMenuOpen()}
                                 className={`group relative block py-4 transition-all duration-500 ${menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
                                 style={{ transitionDelay: menuOpen ? `${150 + i * 75}ms` : '0ms' }}>
                                 <span className={`font-display text-4xl font-black uppercase tracking-wider transition-colors duration-300 sm:text-5xl md:text-6xl ${isLinkActive(link) ? 'text-foreground' : 'text-foreground/40 group-hover:text-foreground'}`}>
@@ -261,7 +264,7 @@ export function SiteNav({ onMenuOpen, menuOpen }: SiteNavProps) {
                     <div className={`my-4 h-px w-16 bg-border transition-all duration-500 ${menuOpen ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'}`}
                         style={{ transitionDelay: menuOpen ? '375ms' : '0ms' }} />
 
-                    <a href="/#contact" onClick={() => onMenuOpen()}
+                    <a href={siteHref('/#contact')} onClick={() => onMenuOpen()}
                         className={`text-lg font-semibold uppercase tracking-widest text-muted-foreground transition-all duration-500 hover:text-foreground sm:text-xl ${menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
                         style={{ transitionDelay: menuOpen ? '450ms' : '0ms' }}>
                         LET&apos;S WORK

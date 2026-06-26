@@ -3,6 +3,9 @@ import { Canvas, type ThreeElements, useFrame } from '@react-three/fiber';
 import { Environment, Html, useGLTF } from '@react-three/drei';
 import { Color, MeshStandardMaterial } from 'three';
 import type { Group, Mesh } from 'three';
+import { SITE_BASE } from '@/lib/utils';
+
+const GLB_URL = `${SITE_BASE}paintball_gun.glb`;
 
 type GroupProps = ThreeElements['group'];
 
@@ -117,7 +120,7 @@ function GunRig({ aimX, aimY, isDark }: GunViewerProps & { isDark: boolean }): R
     return (
         <group ref={yawRef}>
             <group ref={pitchRef}>
-                <GunModel url="/paintball_gun.glb" scale={1.45} position={[0, -0.03, 0]} isDark={isDark} />
+                <GunModel url={GLB_URL} scale={1.45} position={[0, -0.03, 0]} isDark={isDark} />
             </group>
         </group>
     );
@@ -148,4 +151,4 @@ export default function GunViewer({ aimX, aimY }: GunViewerProps): React.JSX.Ele
     );
 }
 
-useGLTF.preload('/paintball_gun.glb');
+useGLTF.preload(GLB_URL);
