@@ -82,3 +82,10 @@ for (const { dest } of pages) {
     console.log(`  ✓ docs/${dest}`);
 }
 console.log('\ndocs/ ready for GitHub Pages.');
+
+// 6. Restore local dev build so php artisan serve works correctly.
+// The GH Pages build leaves public/build/ with base '/wazirikunambi.me/build/'
+// which breaks local testing. Rebuilding restores base '/build/'.
+console.log('\nRestoring local build (base /build/)…');
+execSync('npm run build', { cwd: APP, stdio: 'inherit' });
+console.log('Local build restored.');
