@@ -1,4 +1,4 @@
-import { Link, usePage } from '@inertiajs/react';
+import { usePage } from '@inertiajs/react';
 import gsap from 'gsap';
 import { Moon, Star, Sun } from 'lucide-react';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
@@ -156,9 +156,9 @@ export function SiteNav({ onMenuOpen, menuOpen }: SiteNavProps) {
                 className={`fixed top-0 z-50 flex w-full min-w-0 items-center justify-between gap-2 py-2 pl-4 pr-3 will-change-transform transition-[transform,opacity,background-color,border-color] duration-350 ease-[cubic-bezier(0.22,1,0.36,1)] sm:gap-3 sm:py-3 sm:px-8 md:px-12 lg:px-20 ${navSurfaceClass} ${isHidden && !menuOpen ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'}`}
             >
                 {/* Logo */}
-                <Link href={siteHref('/')} aria-label="Home" className={`truncate font-semibold leading-[0.88] tracking-[-0.03em] text-[clamp(0.65rem,3.2vw,0.95rem)] sm:text-[clamp(0.72rem,1.35vw,0.95rem)] ${topTextClass}`}>
+                <a href={siteHref('/')} aria-label="Home" className={`truncate font-semibold leading-[0.88] tracking-[-0.03em] text-[clamp(0.65rem,3.2vw,0.95rem)] sm:text-[clamp(0.72rem,1.35vw,0.95rem)] ${topTextClass}`}>
                     Waziri Kunambi
-                </Link>
+                </a>
 
                 {/* Desktop CTA — LET'S WORK */}
                 <div className="hidden md:flex">
@@ -253,14 +253,14 @@ export function SiteNav({ onMenuOpen, menuOpen }: SiteNavProps) {
                                 </span>
                             </a>
                         ) : (
-                            <Link key={link.href} href={siteHref(link.href)} onClick={() => onMenuOpen()}
+                            <a key={link.href} href={siteHref(link.href)} onClick={() => onMenuOpen()}
                                 className={`group relative block py-4 transition-all duration-500 ${menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
                                 style={{ transitionDelay: menuOpen ? `${150 + i * 75}ms` : '0ms' }}>
                                 <span className={`font-display text-4xl font-black uppercase tracking-wider transition-colors duration-300 sm:text-5xl md:text-6xl ${isLinkActive(link) ? 'text-foreground' : 'text-foreground/40 group-hover:text-foreground'}`}>
                                     {link.label}
                                 </span>
                                 {isLinkActive(link) && <span className="absolute bottom-0 left-0 h-[2px] w-full bg-foreground" />}
-                            </Link>
+                            </a>
                         )
                     ))}
 
