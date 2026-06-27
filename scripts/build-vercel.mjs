@@ -31,6 +31,14 @@ for (const f of ['favicon.ico','favicon-16x16.png','favicon-32x32.png','apple-to
     try { cpSync(join(APP,'public',f), join(OUT,f)); } catch {}
 }
 
+// Strip localhost origin injected by Laravel when APP_URL points at the dev server.
+// The Vite plugin uses url()->asset() which prepends APP_URL to every asset path.
+function fixHtml(html) {
+    return html
+        .replace(/https?:\/\/localhost(:\d+)?\/build\//g, '/build/')
+        .replace(/https?:\/\/localhost(:\d+)?\/assets\//g, '/assets/');
+}
+
 // 3. Crawl pages (no path prefix needed — base is /)
 const pages = [
     { url: `http://localhost:${PORT}`,          dest: 'index.html' },
@@ -39,11 +47,12 @@ const pages = [
 ];
 for (const { url, dest } of pages) {
     console.log(`Fetching ${url}…`);
-    const html = execSync(`curl -s "${url}"`, { maxBuffer: 10 * 1024 * 1024 }).toString();
-    if (html.includes('5173') || html.includes('@vite/client')) {
+    const raw = execSync(`curl -s "${url}"`, { maxBuffer: 10 * 1024 * 1024 }).toString();
+    if (raw.includes('5173') || raw.includes('@vite/client')) {
         console.error('ERROR: dev server refs in HTML — delete public/hot and retry');
         process.exit(1);
     }
+    const html = fixHtml(raw);
     const out = join(OUT, dest);
     mkdirSync(out.replace(/\/[^/]+$/, ''), { recursive: true });
     writeFileSync(out, html);
@@ -56,7 +65,7 @@ writeFileSync(join(OUT, '.vercel-out'), '');
 console.log('\nVerifying…');
 for (const { dest } of pages) {
     const c = readFileSync(join(OUT, dest), 'utf8');
-    if (c.includes('5173') || c.includes('@vite/client') || c.includes('[::1]')) {
+    if (c.includes('5173') || c.includes('@vite/client') || c.includes('[::1]') || /localhost(:\d+)?\/build\//.test(c)) {
         console.error(`FAIL: ${dest} has dev refs`); process.exit(1);
     }
     console.log(`  ✓ dist/${dest}`);
