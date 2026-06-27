@@ -1,7 +1,7 @@
 import { Link, usePage } from '@inertiajs/react';
 import gsap from 'gsap';
 import { Moon, Star, Sun } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { navLinks, socialLinks, type NavLink as NavLinkType } from '@/data/site';
 import { SITE_BASE } from '@/lib/utils';
@@ -106,9 +106,12 @@ export function SiteNav({ onMenuOpen, menuOpen }: SiteNavProps) {
         return () => ro.disconnect();
     }, []);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (prefersReducedMotion) return;
+        if (prefersReducedMotion) {
+            gsap.set('#site-nav', { opacity: 1 });
+            return;
+        }
         gsap.fromTo('#site-nav', { y: -80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' });
     }, []);
 
@@ -153,7 +156,7 @@ export function SiteNav({ onMenuOpen, menuOpen }: SiteNavProps) {
                 className={`fixed top-0 z-50 flex w-full min-w-0 items-center justify-between gap-2 py-2 pl-4 pr-3 will-change-transform transition-[transform,opacity,background-color,border-color] duration-350 ease-[cubic-bezier(0.22,1,0.36,1)] sm:gap-3 sm:py-3 sm:px-8 md:px-12 lg:px-20 ${navSurfaceClass} ${isHidden && !menuOpen ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'}`}
             >
                 {/* Logo */}
-                <Link href="/" aria-label="Home" className={`truncate font-semibold leading-[0.88] tracking-[-0.03em] text-[clamp(0.65rem,3.2vw,0.95rem)] sm:text-[clamp(0.72rem,1.35vw,0.95rem)] ${topTextClass}`}>
+                <Link href={siteHref('/')} aria-label="Home" className={`truncate font-semibold leading-[0.88] tracking-[-0.03em] text-[clamp(0.65rem,3.2vw,0.95rem)] sm:text-[clamp(0.72rem,1.35vw,0.95rem)] ${topTextClass}`}>
                     Waziri Kunambi
                 </Link>
 
