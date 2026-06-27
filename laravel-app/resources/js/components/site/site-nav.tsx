@@ -109,10 +109,13 @@ export function SiteNav({ onMenuOpen, menuOpen }: SiteNavProps) {
     useLayoutEffect(() => {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (prefersReducedMotion) {
-            gsap.set('#site-nav', { opacity: 1 });
+            gsap.set('#site-nav', { clearProps: 'opacity,transform' });
             return;
         }
-        gsap.fromTo('#site-nav', { y: -80, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' });
+        gsap.fromTo('#site-nav', { y: -80, opacity: 0 }, {
+            y: 0, opacity: 1, duration: 0.7, ease: 'power3.out',
+            onComplete: () => gsap.set('#site-nav', { clearProps: 'transform,opacity' }),
+        });
     }, []);
 
     useEffect(() => {
@@ -153,6 +156,7 @@ export function SiteNav({ onMenuOpen, menuOpen }: SiteNavProps) {
                 ref={navRef}
                 id="site-nav"
                 data-shoot-ui="1"
+                style={{ opacity: 0 }}
                 className={`fixed top-0 z-50 flex w-full min-w-0 items-center justify-between gap-2 py-2 pl-4 pr-3 will-change-transform transition-[transform,opacity,background-color,border-color] duration-350 ease-[cubic-bezier(0.22,1,0.36,1)] sm:gap-3 sm:py-3 sm:px-8 md:px-12 lg:px-20 ${navSurfaceClass} ${isHidden && !menuOpen ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'}`}
             >
                 {/* Logo */}
