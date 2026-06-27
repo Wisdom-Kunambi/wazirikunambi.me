@@ -1,9 +1,6 @@
 {
     "outputDirectory": "dist",
     "buildCommand": "echo 'Pre-built static export — no build step'",
-    "rewrites": [
-        { "source": "/projects", "destination": "/projects/index.html" },
-        { "source": "/resume",   "destination": "/resume/index.html"   },
-        { "source": "/(.*)",     "destination": "/index.html"          }
-    ]
+    "cleanUrls": true,
+    "trailingSlash": false
 }
