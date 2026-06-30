@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" role="img" aria-label="JRCL Global client portal cover">
+  <rect width="1200" height="800" fill="#18181b"/>
+  <g stroke="#3f3f46" stroke-width="1">
+    <path d="M0 200H1200M0 400H1200M0 600H1200"/>
+    <path d="M300 0V800M600 0V800M900 0V800"/>
+  </g>
+  <g stroke="#fafafa" stroke-width="3" fill="none" opacity="0.85">
+    <rect x="545" y="370" width="110" height="90" rx="10"/>
+    <path d="M565 370V330C565 308 581 292 600 292C619 292 635 308 635 330V370"/>
+    <circle cx="600" cy="408" r="9"/>
+    <path d="M600 417V436" stroke-linecap="round"/>
+  </g>
+  <text x="60" y="730" font-family="'Space Grotesk', sans-serif" font-weight="900" font-size="64" fill="#fafafa" letter-spacing="-2">JRCL PORTAL</text>
+  <text x="60" y="80" font-family="'JetBrains Mono', monospace" font-size="20" fill="#a1a1aa" letter-spacing="6">CLIENT PORTAL</text>
+</svg>

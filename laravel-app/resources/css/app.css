@@ -7,9 +7,16 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
+    /*
+      Single global typeface: Geist Mono, the font used in the hero's
+      "I'm based in / Dar es Salaam, Tanzania" line. font-sans, font-display
+      and font-mono all resolve to it so every component (headings, body,
+      buttons, nav, cards, forms, tables, dashboard/admin/auth pages, footer)
+      stays visually consistent from one token.
+    */
     --font-sans:
-        'Geist', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --font-display: 'Newsreader', ui-serif, Georgia, 'Times New Roman', serif;
+        'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --font-display: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
     --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
     --radius-lg: var(--radius);

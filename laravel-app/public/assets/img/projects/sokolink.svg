@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" role="img" aria-label="Sokolink e-commerce marketplace cover">
+  <rect width="1200" height="800" fill="#18181b"/>
+  <g stroke="#3f3f46" stroke-width="1">
+    <path d="M0 200H1200M0 400H1200M0 600H1200"/>
+    <path d="M300 0V800M600 0V800M900 0V800"/>
+  </g>
+  <g stroke="#fafafa" stroke-width="3" fill="none" opacity="0.85">
+    <rect x="480" y="335" width="140" height="70" rx="35" transform="rotate(-25 550 370)"/>
+    <rect x="580" y="335" width="140" height="70" rx="35" transform="rotate(-25 650 370)"/>
+  </g>
+  <text x="60" y="730" font-family="'Space Grotesk', sans-serif" font-weight="900" font-size="64" fill="#fafafa" letter-spacing="-2">SOKOLINK</text>
+  <text x="60" y="80" font-family="'JetBrains Mono', monospace" font-size="20" fill="#a1a1aa" letter-spacing="6">E-COMMERCE PLATFORM</text>
+</svg>

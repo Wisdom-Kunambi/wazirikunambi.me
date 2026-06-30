@@ -138,6 +138,36 @@ export const projects: Project[] = [
         year: '2024',
     },
     {
+        slug: 'jrcl-global',
+        title: 'JRCL Global',
+        description:
+            "Corporate website for JRCL Global, presenting the company's brand, services, and offerings with a clean, professional layout.",
+        tags: ['React', 'JavaScript', 'Tailwind CSS'],
+        image: img('jrcl-global.svg'),
+        url: 'https://jrclglobal.com/',
+        year: '2025',
+    },
+    {
+        slug: 'jrcl-global-portal',
+        title: 'JRCL Global Portal',
+        description:
+            'Client portal for JRCL Global, letting clients securely log in to manage their account and services.',
+        tags: ['React', 'JavaScript', 'REST APIs'],
+        image: img('jrcl-global-portal.svg'),
+        url: 'https://app.jrclglobal.com/auth/login',
+        year: '2025',
+    },
+    {
+        slug: 'sokolink',
+        title: 'Sokolink',
+        description:
+            'E-commerce marketplace platform enabling buyers and sellers to connect, list products, and manage online transactions.',
+        tags: ['React', 'JavaScript', 'E-Commerce'],
+        image: img('sokolink.svg'),
+        url: 'https://sokolink.shop/login',
+        year: '2025',
+    },
+    {
         slug: 'property',
         title: 'Property',
         description:
