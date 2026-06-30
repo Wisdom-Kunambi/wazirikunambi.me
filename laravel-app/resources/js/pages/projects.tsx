@@ -29,7 +29,7 @@ export default function Projects() {
                         className="mt-4 font-display text-[clamp(2.4rem,9vw,5.5rem)] font-black uppercase leading-[0.92] tracking-tight"
                     />
                     <p className="mt-4 max-w-xl text-sm leading-relaxed text-foreground/60 sm:text-base">
-                        A selection of platforms and applications I&apos;ve helped design, build, and ship — spanning front-end interfaces,
+                        A selection of platforms and applications I&apos;ve helped design, build, and ship spanning front-end interfaces,
                         full-stack web apps, and personal builds.
                     </p>
                 </Reveal>
