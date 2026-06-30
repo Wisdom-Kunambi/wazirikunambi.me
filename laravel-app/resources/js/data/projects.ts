@@ -12,6 +12,8 @@ export interface Project {
     year: string;
     featured?: boolean;
     secondaryUrl?: { label: string; href: string };
+    /** Live link is intentionally withheld until public campaign launch. */
+    comingSoon?: boolean;
 }
 
 export const projects: Project[] = [
@@ -46,6 +48,7 @@ export const projects: Project[] = [
         image: img('hill-group.svg'),
         url: 'https://outlet.hillgroup.co.tz/',
         year: '2025',
+        comingSoon: true,
     },
     {
         slug: 'ninecolors',
@@ -146,6 +149,7 @@ export const projects: Project[] = [
         image: img('jrcl-global.svg'),
         url: 'https://jrclglobal.com/',
         year: '2025',
+        comingSoon: true,
     },
     {
         slug: 'jrcl-global-portal',
@@ -156,6 +160,7 @@ export const projects: Project[] = [
         image: img('jrcl-global-portal.svg'),
         url: 'https://app.jrclglobal.com/auth/login',
         year: '2025',
+        comingSoon: true,
     },
     {
         slug: 'sokolink',
@@ -166,6 +171,7 @@ export const projects: Project[] = [
         image: img('sokolink.svg'),
         url: 'https://sokolink.shop/login',
         year: '2025',
+        comingSoon: true,
     },
     {
         slug: 'property',
