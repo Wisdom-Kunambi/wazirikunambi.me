@@ -32,15 +32,23 @@ class ContactController extends Controller
             'ip_address' => $request->ip(),
         ]);
 
-        // Send notification email — non-fatal so DB save always succeeds
         try {
-            Mail::to('kunambiwaziri1@gmail.com')->send(new ContactMessage(
+            Mail::to(env('ADMIN_EMAIL', 'kunambiwaziri1@gmail.com'))->send(new ContactMessage(
                 name: $data['name'],
                 email: $data['email'],
                 body: $data['message'],
             ));
         } catch (\Throwable $e) {
-            Log::error('Contact email failed: '.$e->getMessage());
+            Log::error('Contact email failed', [
+                'error'      => $e->getMessage(),
+                'mailer'     => config('mail.default'),
+                'host'       => config('mail.mailers.smtp.host'),
+                'port'       => config('mail.mailers.smtp.port'),
+                'encryption' => config('mail.mailers.smtp.encryption'),
+                'from'       => config('mail.from.address'),
+            ]);
+
+            return back()->with('status', 'mail_failed');
         }
 
         return back()->with('status', 'sent');

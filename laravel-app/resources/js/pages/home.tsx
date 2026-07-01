@@ -424,8 +424,9 @@ export default function Home() {
                                     <span>{form.processing ? 'Sending...' : 'Send message'}</span>
                                     <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                                 </MagneticButton>
-                                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/70" role="status" aria-live="polite">
+                                <p className={`font-mono text-[10px] uppercase tracking-[0.2em] ${flash?.status === 'mail_failed' ? 'text-red-500' : 'text-foreground/70'}`} role="status" aria-live="polite">
                                     {flash?.status === 'sent' && "Message sent — thanks! I'll reply soon."}
+                                    {flash?.status === 'mail_failed' && "Saved, but email delivery failed — please email me directly."}
                                 </p>
                             </div>
                         </form>
